@@ -6,17 +6,18 @@ import css from './Modal.module.css';
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ onClose, tags, largeImageURL }) => {
-   const  handleKeyDown = e => {
+
+
+  useEffect(() => {
+       const  handleKeyDown = e => {
     if (e.code === 'Escape') {
       onClose();
     }
   };
-
-  useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     
     return () => {window.removeEventListener('keydown', handleKeyDown)}
-  }, []) 
+  }, [onClose]) 
 
 const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
